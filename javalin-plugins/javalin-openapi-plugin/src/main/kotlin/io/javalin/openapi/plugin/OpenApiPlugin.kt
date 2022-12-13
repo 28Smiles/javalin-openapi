@@ -111,7 +111,7 @@ open class OpenApiPlugin @JvmOverloads constructor(private val configuration: Op
                 .loadOpenApiSchemes()
                 .mapValues { (version, rawDocs) ->
                     configuration.definitionConfiguration
-                        ?.let { DefinitionConfiguration().also { definition -> it.accept(version, definition) } }
+                        ?.accept(version, definition)
                         ?.applyConfigurationTo(jsonMapper, version, rawDocs)
                         ?: rawDocs
                 }
